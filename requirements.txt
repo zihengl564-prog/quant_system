@@ -1,0 +1,6 @@
+akshare
+pandas
+python-dotenv
+openpyxl
+tushare
+apscheduler

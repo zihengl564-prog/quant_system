@@ -1,0 +1,23 @@
+[
+  "feat_circ_to_total_mv",
+  "feat_gap_ret",
+  "feat_high_low_range",
+  "feat_intraday_ret",
+  "feat_log_amount",
+  "feat_log_circ_mv",
+  "feat_log_total_mv",
+  "feat_log_vol",
+  "feat_pb",
+  "feat_pe_ttm",
+  "feat_ps_ttm",
+  "feat_ret_1d",
+  "feat_turnover_rate",
+  "feat_turnover_rate_f",
+  "feat_volume_ratio",
+  "feat_amount_to_ma5",
+  "feat_close_to_ma5",
+  "feat_ret_5d",
+  "feat_turnover_to_ma5",
+  "feat_vol_to_ma5",
+  "feat_volatility_5d"
+]

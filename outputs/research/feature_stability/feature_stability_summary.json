@@ -1,0 +1,11 @@
+{
+  "registry_path": "D:\\quant_system\\outputs\\research\\experiment_registry.csv",
+  "baseline_run_id": "baseline_label_ret_5d_fwd_decile_mt50_vd5_tr20240102_20240117_va20240118_20240124_rerun_20260323_174229",
+  "baseline_feature_count": 21,
+  "walkforward_window_count": 9,
+  "majority_threshold": 6,
+  "core_feature_count": 15,
+  "majority_feature_count": 15,
+  "core_feature_list_path": "D:\\quant_system\\outputs\\research\\feature_stability\\v11_feature_list_core.json",
+  "majority_feature_list_path": "D:\\quant_system\\outputs\\research\\feature_stability\\v11_feature_list_majority.json"
+}

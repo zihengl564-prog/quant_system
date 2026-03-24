@@ -1,0 +1,16 @@
+{
+  "db_path": "D:\\quant_system\\data\\standardized_data\\research_data.db",
+  "row_count": 1390672,
+  "feature_count": 27,
+  "label_count": 6,
+  "trade_date_count": 260,
+  "instrument_count": 5445,
+  "min_trade_date": "2024-01-02",
+  "max_trade_date": "2025-01-27",
+  "duplicate_row_count": 0,
+  "duplicate_key_group_count": 0,
+  "label_1d_nonnull_rows": 1385227,
+  "label_5d_nonnull_rows": 1363459,
+  "label_5d_decile_nonnull_rows": 1363459,
+  "high_missing_feature_count_ge_50pct": 0
+}
