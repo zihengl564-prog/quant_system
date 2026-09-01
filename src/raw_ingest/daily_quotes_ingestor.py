@@ -5,7 +5,7 @@ from src.common.logging_utils import get_app_logger, get_error_logger
 from src.config.settings import settings
 from src.data_access.raw_data_repository import RawDataRepository
 from src.data_access.standardized_data_repository import StandardizedDataRepository
-from src.datasources.tushare_provider import TushareProvider
+from src.datasources.tushare_provider import TusharePermissionError, TushareProvider
 
 
 def _yyyymmdd_to_iso(date_str: str) -> str:
@@ -146,8 +146,23 @@ class DailyQuotesIngestor:
                 )
 
                 self.app_logger.info(
-                    f"[DailyQuotesIngestor] daily 回填完成, trade_date={trade_date}, 写入/更新 {row_count} 行"
+                    f"[DailyQuotesIngestor] daily 回填完成, trade_date={trade_date}, "
+                    f"写入/更新 {row_count} 行"
                 )
+
+            except TusharePermissionError as e:
+                failed_info = {
+                    "trade_date": trade_date,
+                    "error_type": type(e).__name__,
+                    "error_code": e.code,
+                    "error_message": str(e),
+                }
+                failed_slices.append(failed_info)
+                self.error_logger.error(
+                    f"[DailyQuotesIngestor] daily 权限不可用，终止该接口回填: "
+                    f"trade_date={trade_date}, code={e.code}, msg={e.message}"
+                )
+                raise
 
             except Exception as e:
                 failed_info = {
