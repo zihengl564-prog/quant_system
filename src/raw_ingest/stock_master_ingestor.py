@@ -3,7 +3,7 @@ from datetime import datetime
 from src.common.logging_utils import get_app_logger, get_error_logger
 from src.config.settings import settings
 from src.data_access.raw_data_repository import RawDataRepository
-from src.datasources.tushare_provider import TushareProvider
+from src.datasources.tushare_provider import TusharePermissionError, TushareProvider
 
 
 class StockMasterIngestor:
@@ -99,6 +99,22 @@ class StockMasterIngestor:
                         f"[StockMasterIngestor] stock_basic 回填完成, "
                         f"exchange={exchange}, list_status={list_status}, 写入/更新 {row_count} 行"
                     )
+
+                except TusharePermissionError as e:
+                    failed_info = {
+                        "exchange": exchange,
+                        "list_status": list_status,
+                        "error_type": type(e).__name__,
+                        "error_code": e.code,
+                        "error_message": str(e),
+                    }
+                    failed_slices.append(failed_info)
+                    self.error_logger.error(
+                        f"[StockMasterIngestor] stock_basic 权限不可用，终止该接口回填: "
+                        f"exchange={exchange}, list_status={list_status}, "
+                        f"code={e.code}, msg={e.message}"
+                    )
+                    raise
 
                 except Exception as e:
                     failed_info = {
